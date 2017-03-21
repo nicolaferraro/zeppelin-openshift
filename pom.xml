@@ -9,6 +9,9 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
+        <fabric8.mode>kubernetes</fabric8.mode>
+
+        <!-- Versions -->
         <fabric8-maven-plugin.version>3.3.0</fabric8-maven-plugin.version>
     </properties>
 
@@ -25,14 +28,26 @@
                 <version>${fabric8-maven-plugin.version}</version>
                 <executions>
                     <execution>
+                        <id>fmp</id>
                         <goals>
                             <goal>resource</goal>
+                            <goal>helm</goal>
                             <goal>build</goal>
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <images>
+                        <image>
+                            <name>nferraro/${project.artifactId}</name>
+                            <build>
+                                <dockerFileDir>${project.basedir}/src/main/docker/zeppelin</dockerFileDir>
+                            </build>
+                        </image>
+                    </images>
+                </configuration>
             </plugin>
         </plugins>
     </build>
-    
+
 </project>

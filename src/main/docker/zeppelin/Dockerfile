@@ -10,5 +10,6 @@ RUN ./setup.sh
 
 ENV MASTER=spark://sparky:7077
 
+
 EXPOSE 8080
 CMD ["/usr/share/zeppelin/bin/run.sh"]
